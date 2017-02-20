@@ -1,15 +1,17 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 #include "Enemy.h"
+class Enemy;
 class Player
 {
-	int *health;
 	
 public:
-	Player();
+	int health=100;
+	Player(int health);
 	void Spell1(Enemy *target);
 	void Spell2(Enemy *target);
 	~Player();
 };
-
 	
+#endif
 

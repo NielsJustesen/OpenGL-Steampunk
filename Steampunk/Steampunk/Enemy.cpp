@@ -2,7 +2,11 @@
 
 
 
-Enemy::Enemy()
+Enemy::Enemy(int health)
+{
+}
+
+void Enemy::Attack(Player *target)
 {
 }
 

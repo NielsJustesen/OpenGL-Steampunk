@@ -1,11 +1,13 @@
-#pragma once
+#ifndef ENEMY_H
+#define ENEMY_H
 #include "Player.h"
+class Player;
 class Enemy
 {
-	int health;
 public:
-	Enemy();
-	void Attack(Player target);
+	int health=100;
+	Enemy(int health);
+	void Attack(Player *target);
 	~Enemy();
 };
-
+#endif
