@@ -1,5 +1,6 @@
 #include "World.h"
 #include <GL/glut.h>
+#include <SOIL.h>
 
 World * world = new World(); //Creates a global varaible with the gameworld
 
@@ -47,7 +48,7 @@ void Keyboard(unsigned char key, int x, int y)
 //Function used to create the gameloop. Used because glut (which is C based) can't call a c++ method directly
 void GameLoop()
 {
-	world->Progress();
+	world->Update();
 	world->Render();
 	glutPostRedisplay();
 }
@@ -57,7 +58,7 @@ void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);//Init GLUT
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH); //Initialize glut display mode with rgb and alpha colors and Depth
-	glutInitWindowSize(500, 500); //Set window size
+	glutInitWindowSize(1000, 1000); //Set window size
 	glutInitWindowPosition(0, 0); //Set window position
 
 	glutCreateWindow("SteamPunk Adventure"); //Create GLUT OpenGL Window

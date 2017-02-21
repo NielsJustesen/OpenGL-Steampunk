@@ -1,47 +1,50 @@
 #include "World.h"
+#include <stdlib.h>
 #include <GL/glut.h>
+#include "Player.h"
+#include "Enemy.h"
 
 
 
-void World::Progress()
+void World::Update()
 {
-	rotation += 0.001f;
+//	rotation += 0.001f;
+//Calculate delta time
+	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
+	float deltaTime = timeSinceStart - oldTimeSinceStart;
+	oldTimeSinceStart = timeSinceStart;
 
 
+	go->Move(deltaTime / 1000);
+
+	Player *p = new Player(100);
+	Enemy *E = new Enemy(100);
 }
 
 void World::Render()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
-	glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
-	glTranslatef(-0.7f, 0.0f, -3.0f);// Push eveything 5 units back into the scene, otherwise we won't see the primitive  
-	//glRotatef(rotation, 0.0f, 0.0f, 1.0f); //Rotation around z axis
-	glBegin(GL_TRIANGLES); //start writing triangle primitives
-	glColor3f(1.0f, 0.0f, 0.0f); //Red color
-	glVertex3f(-0.5f, 0.0f, 0.0f); //Issue vertex
-	glColor3f(0.0f, 1.0f, 0.0f); //Green color
-	glVertex3f(0.0f, 0.5f, 0.0f); //Issue vertex
-	glColor3f(0.0f, 0.0f, 1.0f); //Blue color
-	glVertex3f(0.5f, 0.0f, 0.0f); //Issue vertex
-	glEnd(); //End writing last primitive
+	go->Render();
+
+	glutSwapBuffers();
 	
-	glTranslatef(1.4f, 0.0f, 0.0f);
-	glBegin(GL_QUADS); // Start drawing a quad primitive  
-	glVertex3f(-0.1f, -0.1f, 0.0f); // The bottom left corner  
-	glVertex3f(-0.1f, 0.1f, 0.0f); // The top left corner  
-	glVertex3f(0.1f, 0.1f, 0.0f); // The top right corner  
-	glVertex3f(0.1f, -0.1f, 0.0f); // The bottom right corner  
-	glEnd();
 	glFlush(); //Flush OpenGL Buffer
 
 }
 
 World::World()
 {
-	rotation = 0;
+	//rotation = 0;
+	oldTimeSinceStart = 0;
+
+	glEnable(GL_TEXTURE_2D); //Enable texture mapping
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces
+
+	go = new GameObject(0, 0, 0);
 }
 
 
 World::~World()
 {
+	delete go;
 }
