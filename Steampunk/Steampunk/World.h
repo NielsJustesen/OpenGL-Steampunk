@@ -13,6 +13,7 @@ public:
 	std::vector<GameObject*> toRemove;
 
 	World();
+	bool FindEnemy();
 	void Update();
 	void Render();
 	void AddEnemy();

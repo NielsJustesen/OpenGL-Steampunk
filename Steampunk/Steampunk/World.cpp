@@ -12,7 +12,10 @@ void World::Update()
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
-	//AddEnemy();
+	if (FindEnemy() == false)
+	{
+		AddEnemy();
+	}
 	for (GameObject * go : gameObjects)
 	{
 		go->Update();
@@ -34,6 +37,21 @@ void World::Render()
 
 	glFlush(); //Flush OpenGL Buffer
 
+}
+//returns false if there is an enemy in the game
+bool World::FindEnemy()
+{
+	for (GameObject* go : gameObjects)
+	{
+		if (typeid(*go) == typeid(Enemy))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 }
 
 void World::AddEnemy()
