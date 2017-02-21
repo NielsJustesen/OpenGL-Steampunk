@@ -1,4 +1,5 @@
 #include "World.h"
+#include <iostream>
 #include <stdlib.h>
 #include <GL/glut.h>
 #include "Player.h"
@@ -11,7 +12,7 @@ void World::Update()
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
-	AddEnemy();
+	//AddEnemy();
 	for (GameObject * go : gameObjects)
 	{
 		go->Update();
@@ -20,6 +21,8 @@ void World::Update()
 
 
 }
+
+
 
 void World::Render()
 {
@@ -35,27 +38,39 @@ void World::Render()
 
 void World::AddEnemy()
 {
-	/*Enemy* e = new Enemy(100);
+	Enemy* e = new Enemy(100);
 	it = toAdd.begin();
-	if (std::find(gameObjects.begin(), gameObjects.end(), e) == gameObjects.end())
+	for (GameObject * go : gameObjects)
 	{
-		it = toAdd.insert(it, e);
-		for (GameObject * go : toAdd)
+		if (typeid(*go) != typeid(*e))
 		{
-			gameObjects.push_back(go);
+			it = toAdd.insert(it, e);
+		}
+		else
+		{
+			delete e;
+			e = nullptr;
 		}
 	}
-	toAdd.clear();*/
+	for (GameObject * go : toAdd)
+	{
+		gameObjects.push_back(go);
+	}
+
+
+
+	toAdd.clear();
 }
 
 void World::ClearEnemies()
 {
+	it = toRemove.begin();
 	for (GameObject * go : gameObjects)
 	{
-		/*if (go->health <= 0)
-		{*/
-		it = toRemove.insert(it, go);
-		/*}*/
+		if (go->health <= 0)
+		{
+			toRemove.push_back(go);
+		}
 	}
 	toRemove.clear();
 }
