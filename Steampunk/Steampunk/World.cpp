@@ -29,6 +29,7 @@ void World::Update()
 
 void World::Render()
 {
+	bg->Render();
 	for (GameObject * go : gameObjects)
 	{
 		go->Render();
@@ -95,6 +96,7 @@ void World::ClearEnemies()
 
 World::World()
 {
+	bg = new BackGround(0, 0, 0);
 	Player* p = new Player(100);
 	it = gameObjects.begin();
 	it = gameObjects.insert(it, p);
@@ -109,4 +111,6 @@ World::World()
 
 World::~World()
 {
+	delete bg;
+	bg = nullptr;
 }

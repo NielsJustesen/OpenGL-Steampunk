@@ -1,9 +1,11 @@
 #pragma once
 #include "GameObject.h"
+#include "Background.h"
 #include <vector>
 class World
 {
 private:
+	BackGround * bg;
 	GameObject * go;
 	int oldTimeSinceStart;
 public:
