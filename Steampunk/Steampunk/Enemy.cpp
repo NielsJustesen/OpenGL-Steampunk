@@ -25,6 +25,9 @@ void Enemy::Update()
 
 void Enemy::Attack(Player *target)
 {
+	int dmg = 12;
+	target->health = target->health - dmg;
+	
 }
 
 
