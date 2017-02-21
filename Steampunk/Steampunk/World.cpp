@@ -8,30 +8,42 @@
 
 void World::Update()
 {
-//	rotation += 0.001f;
-//Calculate delta time
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
+	for (GameObject * go : gameObjects)
+	{
+		go->Update();
+	}
 
 
-
-	Player *p = new Player(100);
-	Enemy *E = new Enemy(100);
+	
 }
 
 void World::Render()
 {
-
+	for (GameObject * go : gameObjects)
+	{
+		go->Render();
+	}
 	glutSwapBuffers();
 	
 	glFlush(); //Flush OpenGL Buffer
 
 }
 
+void World::AddEnemy()
+{
+	Enemy* e = new Enemy(100);
+	it = toAdd.begin();
+	it = gameObjects.insert(it, e);
+}
+
 World::World()
 {
-	//rotation = 0;
+	Player* p = new Player(100);
+	it = gameObjects.begin();
+	it = gameObjects.insert(it, p);
 	oldTimeSinceStart = 0;
 
 	glEnable(GL_TEXTURE_2D); //Enable texture mapping
