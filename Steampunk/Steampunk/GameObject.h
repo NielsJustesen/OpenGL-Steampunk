@@ -6,7 +6,9 @@ class GameObject
 private:
 	GLuint texture; //Texture holder
 
+
 public:
+	int health = 100;
 	/*float x;
 	float y;
 	float z;*/

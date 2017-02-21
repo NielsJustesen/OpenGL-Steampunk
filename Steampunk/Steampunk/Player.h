@@ -7,7 +7,7 @@ class Player : public GameObject
 {
 	
 public:
-	int health=100;
+	
 	Player(int health);
 	void Render();
 	void Update();

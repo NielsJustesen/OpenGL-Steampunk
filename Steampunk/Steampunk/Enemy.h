@@ -6,7 +6,7 @@ class Player;
 class Enemy : public GameObject
 {
 public:
-	int health=100;
+
 	Enemy(int health);
 	void Render();
 	void Update();
