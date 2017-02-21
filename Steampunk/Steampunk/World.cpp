@@ -15,7 +15,6 @@ void World::Update()
 	oldTimeSinceStart = timeSinceStart;
 
 
-	go->Move(deltaTime / 1000);
 
 	Player *p = new Player(100);
 	Enemy *E = new Enemy(100);
@@ -23,7 +22,6 @@ void World::Update()
 
 void World::Render()
 {
-	go->Render();
 
 	glutSwapBuffers();
 	
@@ -40,11 +38,9 @@ World::World()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces
 
-	go = new GameObject(0, 0, 0);
 }
 
 
 World::~World()
 {
-	delete go;
 }

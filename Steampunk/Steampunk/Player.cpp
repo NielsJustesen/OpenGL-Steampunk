@@ -1,9 +1,10 @@
 #include "Player.h"
+
 #include <GL/glut.h>
 
 
 
-Player::Player(int health)
+Player::Player(int health) : GameObject()
 {	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
 	glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
@@ -29,6 +30,16 @@ void Player::Spell2(Enemy * target)
 {
 	int dmg = 20;
 	target->health = target->health - dmg;
+}
+
+void Player::Render()
+{
+
+}
+
+void Player::Update()
+{
+
 }
 
 

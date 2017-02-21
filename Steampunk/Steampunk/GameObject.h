@@ -5,13 +5,13 @@ class GameObject
 {
 private:
 	GLuint texture; //Texture holder
-	float x;
-	float y;
-	float z;
 
 public:
-	GameObject(float initX, float initY, float initZ);
+	/*float x;
+	float y;
+	float z;*/
+	GameObject(/*float initX, float initY, float initZ*/);
 	~GameObject();
-	void Move(float gameTime);
-	void Render();
+	virtual void Update();
+	virtual void Render();
 };
