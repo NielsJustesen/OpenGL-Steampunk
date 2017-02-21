@@ -1,12 +1,15 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include "Player.h"
+#include "GameObject.h"
 class Player;
-class Enemy
+class Enemy : public GameObject
 {
 public:
 	int health=100;
 	Enemy(int health);
+	void Render();
+	void Update();
 	void Attack(Player *target);
 	~Enemy();
 };

@@ -58,7 +58,7 @@ void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);//Init GLUT
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH); //Initialize glut display mode with rgb and alpha colors and Depth
-	glutInitWindowSize(1000, 1000); //Set window size
+	glutInitWindowSize(1200, 900); //Set window size
 	glutInitWindowPosition(0, 0); //Set window position
 
 	glutCreateWindow("SteamPunk Adventure"); //Create GLUT OpenGL Window
