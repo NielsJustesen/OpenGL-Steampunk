@@ -3,7 +3,7 @@
 #include <GL/glut.h>
 #include "Player.h"
 #include "Enemy.h"
-
+#include <algorithm>
 
 
 void World::Update()
@@ -11,13 +11,14 @@ void World::Update()
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
+	AddEnemy();
 	for (GameObject * go : gameObjects)
 	{
 		go->Update();
 	}
 
 
-	
+
 }
 
 void World::Render()
@@ -27,16 +28,36 @@ void World::Render()
 		go->Render();
 	}
 	glutSwapBuffers();
-	
+
 	glFlush(); //Flush OpenGL Buffer
 
 }
 
 void World::AddEnemy()
 {
-	Enemy* e = new Enemy(100);
+	/*Enemy* e = new Enemy(100);
 	it = toAdd.begin();
-	it = gameObjects.insert(it, e);
+	if (std::find(gameObjects.begin(), gameObjects.end(), e) == gameObjects.end())
+	{
+		it = toAdd.insert(it, e);
+		for (GameObject * go : toAdd)
+		{
+			gameObjects.push_back(go);
+		}
+	}
+	toAdd.clear();*/
+}
+
+void World::ClearEnemies()
+{
+	for (GameObject * go : gameObjects)
+	{
+		/*if (go->health <= 0)
+		{*/
+		it = toRemove.insert(it, go);
+		/*}*/
+	}
+	toRemove.clear();
 }
 
 World::World()
@@ -45,7 +66,7 @@ World::World()
 	it = gameObjects.begin();
 	it = gameObjects.insert(it, p);
 	oldTimeSinceStart = 0;
-
+	AddEnemy();
 	glEnable(GL_TEXTURE_2D); //Enable texture mapping
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces

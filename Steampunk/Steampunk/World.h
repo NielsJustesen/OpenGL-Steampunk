@@ -16,6 +16,7 @@ public:
 	void Update();
 	void Render();
 	void AddEnemy();
+	void ClearEnemies();
 	~World();
 };
 
