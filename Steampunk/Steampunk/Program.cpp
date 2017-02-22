@@ -39,6 +39,9 @@ void Keyboard(unsigned char key, int x, int y)
 	case 27: //ESC
 		exit(0);
 		break;
+	case 'a':
+		world->InputHandler(key);
+		break;
 	default:
 		break;
 	}
@@ -70,36 +73,3 @@ void main(int argc, char** argv)
 	glutMainLoop(); //Start the glut main loop, only return when finish running the gameloop
 
 }
-////////////#include <iostream>
-////////////#include <irrKlang.h>
-////////////#include "Player.h"
-////////////#include "Enemy.h"
-////////////using namespace std;
-////////////using namespace irrklang;
-////////////
-////////////
-////////////
-////////////void main()
-////////////{
-////////////	Player *p = new Player(100);
-////////////	Enemy *E = new Enemy(100);
-////////////	cout <<"enemy has: "<< E->health << endl;
-////////////	p->Spell1(E);
-////////////	cout << "enemy has: " << E->health << endl;
-////////////	getchar();
-////////////
-////////////
-////////////
-////////////
-////////////
-////////////
-////////////
-////////////
-////////////	/*ISoundEngine * engine = createIrrKlangDevice();
-////////////
-////////////	engine->play2D("bark.wav");
-////////////
-////////////	getchar();
-////////////	engine->drop();*/
-////////////
-////////////}

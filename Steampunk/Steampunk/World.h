@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WORLD_H
+#define WORLD_H
 #include "GameObject.h"
 #include "Background.h"
 #include <vector>
@@ -10,11 +11,12 @@ private:
 	int oldTimeSinceStart;
 public:
 	std::vector<GameObject*>::iterator it;
-	std::vector<GameObject*> gameObjects;
+	static std::vector<GameObject*> gameObjects;
 	std::vector<GameObject*> toAdd;
 	std::vector<GameObject*> toRemove;
 
 	World();
+	void InputHandler(char input);
 	bool FindEnemy();
 	void Update();
 	void Render();
@@ -22,4 +24,4 @@ public:
 	void ClearEnemies();
 	~World();
 };
-
+#endif

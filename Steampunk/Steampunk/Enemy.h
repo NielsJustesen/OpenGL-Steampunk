@@ -7,7 +7,8 @@ class Enemy : public GameObject
 {
 public:
 
-	Enemy(int health);
+	Enemy(float health);
+	void HealthBar();
 	void Render();
 	void Update();
 	void Attack(Player *target);

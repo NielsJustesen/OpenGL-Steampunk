@@ -4,18 +4,13 @@
 #include <GL/glut.h>
 #include "Player.h"
 #include "Enemy.h"
-#include <algorithm>
-
+Player *p;
 
 void World::Update()
 {
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
-	if (FindEnemy() == false)
-	{
-		AddEnemy();
-	}
 	for (GameObject * go : gameObjects)
 	{
 		go->Update();
@@ -29,7 +24,9 @@ void World::Update()
 
 void World::Render()
 {
-	bg->Render();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
+	glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
+
 	for (GameObject * go : gameObjects)
 	{
 		go->Render();
@@ -93,15 +90,20 @@ void World::ClearEnemies()
 	}
 	toRemove.clear();
 }
-
+void World::InputHandler(char input)
+{
+	p->Update(input);
+}
 World::World()
 {
 	bg = new BackGround(0, 0, 0);
-	Player* p = new Player(100);
+	p = new Player(2);
+	GameObject *e = new Enemy(2);
 	it = gameObjects.begin();
 	it = gameObjects.insert(it, p);
+	gameObjects.push_back(e);
 	oldTimeSinceStart = 0;
-	AddEnemy();
+	
 	glEnable(GL_TEXTURE_2D); //Enable texture mapping
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces

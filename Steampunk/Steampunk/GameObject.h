@@ -8,7 +8,7 @@ private:
 
 
 public:
-	int health = 100;
+	float health;
 	/*float x;
 	float y;
 	float z;*/

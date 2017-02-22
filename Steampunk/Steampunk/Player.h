@@ -8,9 +8,10 @@ class Player : public GameObject
 	
 public:
 	
-	Player(int health);
+	Player(float health);
 	void Render();
-	void Update();
+	void Update(char input);
+	void HealthBar();
 	void Spell1(Enemy *target);
 	void Spell2(Enemy *target);
 	~Player();
