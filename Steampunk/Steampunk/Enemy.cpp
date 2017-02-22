@@ -1,5 +1,9 @@
 #include "Enemy.h"
 #include <GL/glut.h>
+#include <string>
+#include "World.h"
+
+
 
 
 
@@ -21,13 +25,23 @@ void Enemy::Render()
 
 void Enemy::Update()
 {
+	GameObject   *p = World::gameObjects[0];
+	
+	Attack(p);
 }
 
 void Enemy::Attack(Player *target)
 {
 	int dmg = 12;
 	target->health = target->health - dmg;
-	
+	//char string = target->health;
+	glColor3f(0.4, 0.1, 0.1);
+	glRasterPos2f(0, 0);
+	//int len, i;
+	//len = (int)strlen(string);
+	for (int i = 0; i < 2; i++) {
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, target->health);
+	}
 }
 
 
