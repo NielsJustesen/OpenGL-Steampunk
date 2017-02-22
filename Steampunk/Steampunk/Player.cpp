@@ -54,19 +54,24 @@ void Player::HealthBar()
 
 void Player::Update(char input)
 {
-	GameObject *e;
-	Enemy * enemy = dynamic_cast<Enemy*>(e);
-	for (GameObject * go : World::gameObjects)
+	/*Enemy *e;
+	GameObject * enemy = dynamic_cast<GameObject*>(e);
+	std::vector<GameObject*>::iterator it;
+	for (it = World::GetGameObjects.begin(); it < World::GetGameObjects.end(); it++)
+	{
+		
+	}
+	for (GameObject * go : World::GetGameObjects)
 	{
 		if (typeid(*go) == typeid(Enemy))
 		{
-			e = go;
+			enemy = go;
 		}
 	}
 	if (input == 'a')
 	{
 		Spell1(e);
-	}
+	}*/
 }
 
 

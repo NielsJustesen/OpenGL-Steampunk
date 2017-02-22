@@ -34,18 +34,15 @@ void Reshape(int width, int height)
 //Keyboard input method handle keyboard input from glut. Could potentially parse it to the GW for further handling
 void Keyboard(unsigned char key, int x, int y)
 {
-	switch (key)
+	if (key == 'a' || key == 's' || key == 'd' || key == 'f')
 	{
-	case 27: //ESC
-		exit(0);
-		break;
-	case 'a':
 		world->InputHandler(key);
-		break;
-	default:
-		break;
 	}
+	else if (key == 27)
+	{
+		exit(0);
 
+	}
 }
 
 //Function used to create the gameloop. Used because glut (which is C based) can't call a c++ method directly

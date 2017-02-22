@@ -40,17 +40,38 @@ void Enemy::HealthBar()
 	glPopMatrix();
 	glEnd();
 }
-void Enemy::Update()
+void Enemy::Update(char input)
 {
-	/*GameObject   *p = World::gameObjects[0];
-	Attack(p);*/
-	glColor3f(0.4, 0.1, 0.1);
-	glRasterPos2f(2, 0);
-	int len, i;
-	len = (int)strlen("health: ");
-	for (int i = 0; i < len; i++) {
-		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, this->health);
+	switch (input)
+	{
+	case 'a':
+		this->health -= 0.25f;
+		break;
+	case 's':
+		this->health -= 0.50f;
+		break;
+	case 'd':
+		this->health -= 0.75f;
+		break;
+	case 'f':
+		this->health -= 1;
+		break;
+	default:
+		break;
 	}
+	if (this->health <= 0)
+	{
+		health = 0;
+	}
+	///*GameObject   *p = World::gameObjects[0];
+	//Attack(p);*/
+	//glColor3f(0.4, 0.1, 0.1);
+	//glRasterPos2f(2, 0);
+	//int len, i;
+	//len = (int)strlen("health: ");
+	//for (int i = 0; i < len; i++) {
+	//	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, this->health);
+	//}
 }
 
 void Enemy::Attack(Player *target)

@@ -10,12 +10,13 @@ private:
 	GameObject * go;
 	int oldTimeSinceStart;
 public:
-	std::vector<GameObject*>::iterator it;
-	static std::vector<GameObject*> gameObjects;
+	std::vector<GameObject*>::iterator *it;
+	std::vector<GameObject*> *gameObjects;
 	std::vector<GameObject*> toAdd;
 	std::vector<GameObject*> toRemove;
 
 	World();
+	//std::vector<GameObject*> & GetGameObjects();
 	void InputHandler(char input);
 	bool FindEnemy();
 	void Update();

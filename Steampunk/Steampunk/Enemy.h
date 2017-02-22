@@ -10,7 +10,7 @@ public:
 	Enemy(float health);
 	void HealthBar();
 	void Render();
-	void Update();
+	void Update(char input);
 	void Attack(Player *target);
 	~Enemy();
 };
