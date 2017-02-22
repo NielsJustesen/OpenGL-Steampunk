@@ -1,9 +1,11 @@
 #pragma once
 #include "GameObject.h"
+#include "Background.h"
 #include <vector>
 class World
 {
 private:
+	BackGround * bg;
 	GameObject * go;
 	int oldTimeSinceStart;
 public:
@@ -13,9 +15,11 @@ public:
 	std::vector<GameObject*> toRemove;
 
 	World();
+	bool FindEnemy();
 	void Update();
 	void Render();
 	void AddEnemy();
+	void ClearEnemies();
 	~World();
 };
 
