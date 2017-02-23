@@ -31,6 +31,9 @@ void World::Render()
 	glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, 0.0f);
+	bg->Render();
+	
+
 	for (GameObject * go : *gameObjects)
 	{
 		go->Render();
@@ -120,6 +123,7 @@ void World::InputHandler(char input)
 }
 World::World()
 {
+	bg = new Background(0, 0, -12);
 	p = new Player(2.0f, this);
 	e = new Enemy(2.0f, this);
 	gameObjects = new std::vector<GameObject*>();
@@ -130,10 +134,7 @@ World::World()
 	gameObjects->push_back(e);
 	oldTimeSinceStart = 0;
 
-	glEnable(GL_TEXTURE_2D); //Enable texture mapping
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces
-
+	
 }
 
 

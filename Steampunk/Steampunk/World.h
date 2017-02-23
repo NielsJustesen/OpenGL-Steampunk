@@ -1,10 +1,12 @@
 #ifndef WORLD_H
 #define WORLD_H
 #include "GameObject.h"
+#include "Background.h"
 #include <vector>
 class World
 {
 private:
+	Background * bg;
 	GameObject * go;
 	int oldTimeSinceStart;
 public:

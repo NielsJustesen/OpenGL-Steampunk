@@ -24,11 +24,14 @@ void Enemy::HealthBar()
 	glBegin(GL_QUADS); // Start drawing a quad primitive  
 	glColor3f(1.0f, 0.0f, 0.0f); //Red color
 	glVertex3f(-0.1f, -0.1f, 0.0f); // The bottom left corner  
+	glColor3f(1.0f, 0.0f, 0.0f); //Red color
 	glVertex3f(-0.1f, 0.1f, 0.0f); // The top left corner  
+	glColor3f(1.0f, 0.0f, 0.0f); //Red color
 	glVertex3f(this->health /2, 0.1f, 0.0f); // The top right corner  
+	glColor3f(1.0f, 0.0f, 0.0f); //Red color
 	glVertex3f(this->health /2, -0.1f, 0.0f); // The bottom right corner  
-	glPopMatrix();
 	glEnd();
+	glPopMatrix();
 }
 void Enemy::Update(char input)
 {

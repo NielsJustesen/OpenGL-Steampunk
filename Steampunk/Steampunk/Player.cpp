@@ -40,8 +40,8 @@ void Player::HealthBar()
 	glVertex3f(-0.1f, 0.1f, 0.0f); // The top left corner  
 	glVertex3f(this->health/2, 0.1f, 0.0f); // The top right corner  
 	glVertex3f(this->health/2, -0.1f, 0.0f); // The bottom right corner  
-	glPopMatrix();
 	glEnd();
+	glPopMatrix();
 }
 
 void Player::Update(char input)
