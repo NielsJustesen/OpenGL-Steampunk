@@ -1,13 +1,13 @@
 #include "Enemy.h"
 #include <GL/glut.h>
 #include <string>
-#include "World.h"
 
 
 
 
 
-Enemy::Enemy(float health) : GameObject()
+
+Enemy::Enemy(float health, World gW) : GameObject()
 {
 	this->health = health;
 }
