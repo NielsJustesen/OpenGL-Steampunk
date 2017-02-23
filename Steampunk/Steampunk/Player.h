@@ -3,7 +3,6 @@
 #include "Enemy.h"
 #include "World.h"
 #include "GameObject.h"
-#include <primitiveshape.h>
 class Enemy;
 class Player : public GameObject
 {

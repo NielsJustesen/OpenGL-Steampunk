@@ -46,7 +46,6 @@ void Player::HealthBar()
 
 void Player::Update(char input)
 {
-	
 	Enemy * enemy = nullptr;
 	for (GameObject * go : *(world->GetGameObjects()))
 	{
@@ -98,6 +97,8 @@ void Player::Update(char input)
 	{
 		this->health = 2;
 	}
+	/*delete enemy;
+	enemy = nullptr;*/
 }
 
 

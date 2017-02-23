@@ -65,7 +65,7 @@ void World::AddEnemy()
 		newEnemy = new Enemy(2, this, enemyType);
 		enemyType = false;
 	}
-	else 
+	else
 	{
 		newEnemy = new Enemy(2, this, enemyType);
 		enemyType = true;
@@ -94,6 +94,7 @@ void World::AddEnemy()
 void World::RemoveObjects()
 {
 	it = toRemove->begin();
+	GameObject * tmp = nullptr;
 	for (GameObject * go : *gameObjects)
 	{
 		if (go->health <= 0)
@@ -103,11 +104,11 @@ void World::RemoveObjects()
 	}
 	for (GameObject * go : *toRemove)
 	{
-		GameObject * tmp = nullptr;
 		if (typeid(*go) == typeid(Enemy) && go->health >= 0)
 		{
 			tmp = dynamic_cast<Enemy*>(go);
 			gameObjects->erase(std::remove(gameObjects->begin(), gameObjects->end(), tmp), gameObjects->end());
+			//Garbage collect the dead enemy
 			enemyAlive = false;
 			AddEnemy();
 		}
@@ -115,11 +116,15 @@ void World::RemoveObjects()
 		{
 			tmp = dynamic_cast<Player*>(go);
 			gameObjects->erase(std::remove(gameObjects->begin(), gameObjects->end(), tmp), gameObjects->end());
+			//garbage collect the dead player
 			playerAlive = false;
 		}
 	}
 	toRemove->clear();
+	delete tmp;
+	tmp = nullptr;
 }
+
 void World::InputHandler(char input)
 {
 	if (enemyAlive)
@@ -131,6 +136,7 @@ void World::InputHandler(char input)
 		p->Update(input);
 	}
 }
+
 World::World()
 {
 	bg = new Background(0, 0, -12);
@@ -143,10 +149,7 @@ World::World()
 	it = gameObjects->insert(it, p);
 	gameObjects->push_back(e);
 	oldTimeSinceStart = 0;
-
-
 }
-
 
 World::~World()
 {

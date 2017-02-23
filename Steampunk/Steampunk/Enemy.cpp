@@ -2,10 +2,6 @@
 #include <GL/glut.h>
 #include <string>
 
-
-
-
-
 Enemy::Enemy(float health, World *world, bool type) : GameObject()
 {
 	this->health = health;
@@ -75,19 +71,21 @@ void Enemy::Update(char input)
 			break;
 		}
 	}
-	if (this->health <= 0)
+	if (this->health <= 0.0f)
 	{
-		this->health = 0;
+		this->health = 0.0f;
 	}
-	if (this->health >= 2)
+	if (this->health >= 2.0f)
 	{
-		this->health = 2;
+		this->health = 2.0f;
 	}
+	/*delete player;
+	player = nullptr;*/
 }
 
 void Enemy::Attack(Player *target)
 {
-	target->health = target->health - 0.20;
+	target->health = target->health - 0.20f;
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 #include <GL\glut.h>
-
+#include <primitiveshape.h>
 class GameObject
 {
 private:
@@ -12,7 +12,7 @@ public:
 	float y;
 	float z;*/
 	GameObject(/*float initX, float initY, float initZ*/);
-	~GameObject();
+	virtual ~GameObject();
 	virtual void Update();
 	virtual void Render();
 };
