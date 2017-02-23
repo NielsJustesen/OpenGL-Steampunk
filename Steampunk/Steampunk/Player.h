@@ -7,8 +7,8 @@ class Enemy;
 class Player : public GameObject
 {
 public:
-	World world;
-	Player(float health, World world);
+	World *world;
+	Player(float health, World *world);
 	void Render();
 	void Update(char input);
 	void HealthBar();

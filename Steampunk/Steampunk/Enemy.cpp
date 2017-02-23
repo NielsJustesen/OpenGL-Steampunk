@@ -6,18 +6,10 @@
 
 
 
-
-Enemy::Enemy(float health, World gW) : GameObject()
-#include "World.h"
-#include <primitiveshape.h>
-
-primitiveshape ps;
-float red = 0.4f;
-float green = 1.0f;
-float blue = 0.0f;
-Enemy::Enemy(float health) : GameObject()
+Enemy::Enemy(float health, World *world) : GameObject()
 {
 	this->health = health;
+	this->world = world;
 }
 
 void Enemy::Render()

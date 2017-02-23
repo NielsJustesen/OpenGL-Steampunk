@@ -3,12 +3,20 @@
 #include "Player.h"
 #include "World.h"
 #include "GameObject.h"
+
+#include <primitiveshape.h>
+
+
 class Player;
 class Enemy : public GameObject
 {
 public:
-
-	Enemy(float health, World world);
+	World  *world;
+	primitiveshape ps;
+	float red = 0.4f;
+	float green = 1.0f;
+	float blue = 0.0f;
+	Enemy(float health, World *world);
 	void HealthBar();
 	void Render();
 	void Update(char input);

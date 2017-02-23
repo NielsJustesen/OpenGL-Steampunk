@@ -58,7 +58,7 @@ bool World::FindEnemy()
 
 void World::AddEnemy()
 {
-	Enemy* e = new Enemy(100, *this);
+	Enemy* e = new Enemy(100, this);
 	it = toAdd.begin();
 	for (GameObject * go : *gameObjects)
 	{
@@ -98,9 +98,8 @@ void World::InputHandler(char input)
 }
 World::World()
 {
-	bg = new BackGround(0, 0, 0);
-	p = new Player(2.0f, *this);
-	e = new Enemy(2.0f, *this);
+	p = new Player(2.0f, this);
+	e = new Enemy(2.0f, this);
 	gameObjects = new std::vector<GameObject*>();
 	it = gameObjects->begin();
 	it = gameObjects->insert(it, p);
@@ -116,6 +115,4 @@ World::World()
 
 World::~World()
 {
-	delete bg;
-	bg = nullptr;
 }

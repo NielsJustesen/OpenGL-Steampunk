@@ -10,8 +10,8 @@
 	float red1 = 0.4f;
 	float green1 = 0.0f;
 	float blue1 = 1.0f;
-Player::Player(float health) : GameObject()
-Player::Player(float health, World world) : GameObject()
+
+Player::Player(float health, World *world) : GameObject()
 {	
 	this->health = health;
 	this->world = world;
@@ -70,7 +70,7 @@ void Player::Update(char input)
 	{
 		
 	}*/
-	for (GameObject * go : *(world.GetGameObjects()))
+	for (GameObject * go : *(world->GetGameObjects()))
 	{
 		if (typeid(*go) == typeid(Enemy))
 		{
