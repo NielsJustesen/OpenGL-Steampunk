@@ -56,21 +56,35 @@ void Player::Update(char input)
 
 		}
 	}
-	if (input)
+	if (enemy && input)
 	{
 		switch (input)
 		{
 		case 'a':
+			red1 = 0.4f;
+			green1 = 0.0f;
+			blue1 = 1.0f;
 			Spell1(enemy);
 			break;
 		case 's':
+			red1 = 1.0f;
+			green1 = 0.0f;
+			blue1 = 0.4f;
 			Spell2(enemy);
 			break;
 		case 'd':
 			this->health += 0.5f;
 			break;
-		case 'f':
-			this->health += 1;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch (input)
+		{
+		case 'd':
+			this->health += 0.5f;
 			break;
 		default:
 			break;
