@@ -15,6 +15,7 @@ Enemy::Enemy(float health) : GameObject()
 
 void Enemy::Render()
 {
+	
 	//glPushMatrix();
 	//
 	//glTranslatef(3.5f, -0.0f, -3.0f);
@@ -26,7 +27,7 @@ void Enemy::Render()
 	//glVertex3f(1.1f, -0.1f, 0.0f); // The bottom right corner
 	//glPopMatrix();
 	//glEnd();
-	ps.Square(red, green, blue, -0.7f, -0.5f, -3.0f);
+	ps.Square(red, green, blue, 3.5f, -0.0f, -10.0f);
 	HealthBar();
 }
 void Enemy::HealthBar()

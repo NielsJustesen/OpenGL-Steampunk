@@ -28,8 +28,8 @@ void World::Update()
 
 void World::Render()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
-	glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
+	//glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
 
 	for (GameObject * go : gameObjects)
 	{

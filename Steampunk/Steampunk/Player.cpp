@@ -5,11 +5,11 @@
 #include <typeinfo>
 #include <primitiveshape.h>
 
-primitiveshape ps;
-float red = 0.4f;
-float green = 0.0f;
-float blue = 1.0f;
 
+	primitiveshape ps1;
+	float red1 = 0.4f;
+	float green1 = 0.0f;
+	float blue1 = 1.0f;
 Player::Player(float health) : GameObject()
 {	
 	this->health = health;
@@ -29,6 +29,7 @@ void Player::Spell2(Enemy * target)
 
 void Player::Render()
 {
+
 	//glPushMatrix();
 	//glTranslatef(-0.7f, -0.5f, -3.0f);// Push eveything 5 units back into the scene, otherwise we won't see the primitive
 	//glBegin(GL_TRIANGLES); //start writing triangle primitives
@@ -38,9 +39,9 @@ void Player::Render()
 	//glVertex3f(0.0f, 0.5f, 0.0f); //Issue vertex
 	//glColor3f(0.0f, 0.0f, 1.0f); //Blue color
 	//glVertex3f(0.5f, 0.0f, 0.0f); //Issue vertex
-	//glPopMatrix();
+	/*glPopMatrix();*/
 	//glEnd(); //End writing last primitive
-	ps.Player(red, green, blue, -0.7f, -0.5f, -3.0f);
+	ps1.Player(red1, green1, blue1, -0.7f, -0.5f, -10.0f);
 	HealthBar();
 }
 

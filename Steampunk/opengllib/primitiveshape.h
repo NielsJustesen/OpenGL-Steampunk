@@ -1,4 +1,6 @@
 #pragma once
+#ifndef PRIMITIVESHAPE_H
+#define PRIMITIVESHAPE_H
 
 class primitiveshape
 {
@@ -21,5 +23,6 @@ primitiveshape::primitiveshape()
 primitiveshape::~primitiveshape()
 {
 }
+#endif
 
 
