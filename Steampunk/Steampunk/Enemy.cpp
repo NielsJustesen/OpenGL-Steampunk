@@ -2,11 +2,12 @@
 #include <GL/glut.h>
 #include <string>
 #include "World.h"
+#include <primitiveshape.h>
 
-
-
-
-
+primitiveshape ps;
+float red = 0.4f;
+float green = 1.0f;
+float blue = 0.0f;
 Enemy::Enemy(float health) : GameObject()
 {
 	this->health = health;
@@ -14,17 +15,18 @@ Enemy::Enemy(float health) : GameObject()
 
 void Enemy::Render()
 {
-	glPushMatrix();
-	
-	glTranslatef(3.5f, -0.0f, -3.0f);
-	glBegin(GL_QUADS); // Start drawing a quad primitive  
-	glColor3f(0.0f, 0.0f, 1.0f);
-	glVertex3f(-0.1f, -0.1f, 0.0f); // The bottom left corner  
-	glVertex3f(-0.1f, 1.1f, 0.0f); // The top left corner  
-	glVertex3f(1.1f, 1.1f, 0.0f); // The top right corner  
-	glVertex3f(1.1f, -0.1f, 0.0f); // The bottom right corner
-	glPopMatrix();
-	glEnd();
+	//glPushMatrix();
+	//
+	//glTranslatef(3.5f, -0.0f, -3.0f);
+	//glBegin(GL_QUADS); // Start drawing a quad primitive  
+	//glColor3f(0.0f, 0.0f, 1.0f);
+	//glVertex3f(-0.1f, -0.1f, 0.0f); // The bottom left corner  
+	//glVertex3f(-0.1f, 1.1f, 0.0f); // The top left corner  
+	//glVertex3f(1.1f, 1.1f, 0.0f); // The top right corner  
+	//glVertex3f(1.1f, -0.1f, 0.0f); // The bottom right corner
+	//glPopMatrix();
+	//glEnd();
+	ps.Square(red, green, blue, -0.7f, -0.5f, -3.0f);
 	HealthBar();
 }
 void Enemy::HealthBar()
