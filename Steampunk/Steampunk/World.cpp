@@ -9,6 +9,7 @@ Player *p;
 Enemy *e;
 bool playerAlive = true;
 bool enemyAlive = true;
+bool enemyType = true;
 void World::Update()
 {
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
@@ -32,7 +33,7 @@ void World::Render()
 	glPushMatrix();
 	glTranslatef(0.0f, 0.0f, 0.0f);
 	bg->Render();
-	
+
 
 	for (GameObject * go : *gameObjects)
 	{
@@ -52,27 +53,35 @@ bool World::FindEnemy()
 		{
 			return false;
 		}
-		else
-		{
-			return true;
-		}
 	}
+	return true;
 }
 
 void World::AddEnemy()
 {
-	Enemy* e = new Enemy(2, this);
+	Enemy* newEnemy;
+	if (enemyType == true)
+	{
+		newEnemy = new Enemy(2, this, enemyType);
+		enemyType = false;
+	}
+	else 
+	{
+		newEnemy = new Enemy(2, this, enemyType);
+		enemyType = true;
+	}
 	it = toAdd->begin();
 	for (GameObject * go : *gameObjects)
 	{
-		if (typeid(*go) != typeid(*e))
+		if (typeid(*go) != typeid(*newEnemy))
 		{
-			it = toAdd->insert(it, e);
+			it = toAdd->insert(it, newEnemy);
+			enemyAlive = true;
 		}
 		else
 		{
-			delete e;
-			e = nullptr;
+			delete newEnemy;
+			newEnemy = nullptr;
 		}
 	}
 	for (GameObject * go : *toAdd)
@@ -100,6 +109,7 @@ void World::RemoveObjects()
 			tmp = dynamic_cast<Enemy*>(go);
 			gameObjects->erase(std::remove(gameObjects->begin(), gameObjects->end(), tmp), gameObjects->end());
 			enemyAlive = false;
+			AddEnemy();
 		}
 		if (typeid(*go) == typeid(Player) && go->health >= 0)
 		{
@@ -125,7 +135,7 @@ World::World()
 {
 	bg = new Background(0, 0, -12);
 	p = new Player(2.0f, this);
-	e = new Enemy(2.0f, this);
+	e = new Enemy(2.0f, this, enemyType);
 	gameObjects = new std::vector<GameObject*>();
 	toRemove = new std::vector<GameObject*>();
 	toAdd = new std::vector<GameObject*>();
@@ -134,7 +144,7 @@ World::World()
 	gameObjects->push_back(e);
 	oldTimeSinceStart = 0;
 
-	
+
 }
 
 

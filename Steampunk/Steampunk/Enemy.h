@@ -3,7 +3,6 @@
 #include "Player.h"
 #include "World.h"
 #include "GameObject.h"
-
 #include <primitiveshape.h>
 
 
@@ -16,7 +15,8 @@ public:
 	float red = 0.4f;
 	float green = 1.0f;
 	float blue = 0.0f;
-	Enemy(float health, World *world);
+	bool type;
+	Enemy(float health, World *world, bool type);
 	void HealthBar();
 	void Render();
 	void Update(char input);
