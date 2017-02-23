@@ -3,10 +3,15 @@
 #include "Enemy.h"
 #include "World.h"
 #include "GameObject.h"
+#include <primitiveshape.h>
 class Enemy;
 class Player : public GameObject
 {
 public:
+	primitiveshape ps1;
+	float red1 = 0.4f;
+	float green1 = 0.0f;
+	float blue1 = 1.0f;
 	World *world;
 	Player(float health, World *world);
 	void Render();

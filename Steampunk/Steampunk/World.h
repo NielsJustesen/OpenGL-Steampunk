@@ -1,17 +1,19 @@
 #ifndef WORLD_H
 #define WORLD_H
 #include "GameObject.h"
+#include "Background.h"
 #include <vector>
 class World
 {
 private:
+	Background * bg;
 	GameObject * go;
 	int oldTimeSinceStart;
 public:
 	std::vector<GameObject*>::iterator it;
     std::vector<GameObject*> * gameObjects;
-	std::vector<GameObject*> toAdd;
-	std::vector<GameObject*> toRemove;
+	std::vector<GameObject*> * toAdd;
+	std::vector<GameObject*> * toRemove;
 
 	World();
 	std::vector<GameObject*> * GetGameObjects();
@@ -20,7 +22,7 @@ public:
 	void Update();
 	void Render();
 	void AddEnemy();
-	void ClearEnemies();
+	void RemoveObjects();
 	~World();
 };
 #endif

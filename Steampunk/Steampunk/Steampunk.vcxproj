@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\4. semester\c++ projekt\Steampunk\opengllib;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\4. semester\c++ projekt\Steampunk\opengllib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\niels_000\Desktop\Steampunk project\Steampunk\opengllib;D:\4. semester\c++ projekt\Steampunk\opengllib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\niels_000\Desktop\Steampunk project\Steampunk\opengllib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -152,6 +153,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Player.h" />

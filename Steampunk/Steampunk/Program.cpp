@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include <SOIL.h>
 
-World * world = new World(); //Creates a global varaible with the gameworld
+World * world;
 
 
 void InitOpenGL()
@@ -14,6 +14,10 @@ void InitOpenGL()
 	glDepthFunc(GL_LEQUAL); //Set depth buffer testing to less then or equal
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); //Specifies how colors/textures are interpolized on surfaces
+	glEnable(GL_TEXTURE_2D); //Enable texture mapping
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //Specify how textures should be interpolized over surfaces
+
 }
 
 void Reshape(int width, int height)
@@ -34,7 +38,7 @@ void Reshape(int width, int height)
 //Keyboard input method handle keyboard input from glut. Could potentially parse it to the GW for further handling
 void Keyboard(unsigned char key, int x, int y)
 {
-	if (key == 'a' || key == 's' || key == 'd' || key == 'f')
+	if (key == 'a' || key == 's' || key == 'd')
 	{
 		world->InputHandler(key);
 	}
@@ -57,7 +61,7 @@ void GameLoop()
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);//Init GLUT
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH); //Initialize glut display mode with rgb and alpha colors and Depth
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE); //Initialize glut display mode with rgb and alpha colors and Depth
 	glutInitWindowSize(1200, 900); //Set window size
 	glutInitWindowPosition(0, 0); //Set window position
 
@@ -67,6 +71,7 @@ void main(int argc, char** argv)
 	glutReshapeFunc(&Reshape); //Takes a function pointer to the reshape function
 	glutDisplayFunc(&GameLoop); //Takes a function pointer to the main loop / display function
 	glutKeyboardFunc(&Keyboard); //Takes a function pointer to the keyboard input handling function
+	world = new World(); //Creates a global varaible with the gameworld
 	glutMainLoop(); //Start the glut main loop, only return when finish running the gameloop
 
 }

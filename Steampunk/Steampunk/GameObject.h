@@ -1,12 +1,11 @@
-#pragma once
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
 #include <GL\glut.h>
 
 class GameObject
 {
 private:
 	GLuint texture; //Texture holder
-
-
 public:
 	float health;
 	/*float x;
@@ -17,3 +16,4 @@ public:
 	virtual void Update();
 	virtual void Render();
 };
+#endif // !GAMEOBJECT_H

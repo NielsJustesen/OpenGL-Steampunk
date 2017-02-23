@@ -14,83 +14,71 @@ Enemy::Enemy(float health, World *world) : GameObject()
 
 void Enemy::Render()
 {
-	
-	//glPushMatrix();
-	//
-	//glTranslatef(3.5f, -0.0f, -3.0f);
-	//glBegin(GL_QUADS); // Start drawing a quad primitive  
-	//glColor3f(0.0f, 0.0f, 1.0f);
-	//glVertex3f(-0.1f, -0.1f, 0.0f); // The bottom left corner  
-	//glVertex3f(-0.1f, 1.1f, 0.0f); // The top left corner  
-	//glVertex3f(1.1f, 1.1f, 0.0f); // The top right corner  
-	//glVertex3f(1.1f, -0.1f, 0.0f); // The bottom right corner
-	//glPopMatrix();
-	//glEnd();
-	ps.Square(red, green, blue, 3.5f, -0.0f, -10.0f);
+	ps.Square(red, green, blue, 3.0f, -0.0f, -10.0f);
 	HealthBar();
 }
 void Enemy::HealthBar()
 {
 	glPushMatrix();
-	glTranslatef(1.6f, -1.0f, -3.0f);
+	glTranslatef(0.2f, -0.7f, -3.0f);
 	glBegin(GL_QUADS); // Start drawing a quad primitive  
 	glColor3f(1.0f, 0.0f, 0.0f); //Red color
 	glVertex3f(-0.1f, -0.1f, 0.0f); // The bottom left corner  
+	glColor3f(1.0f, 0.0f, 0.0f); //Red color
 	glVertex3f(-0.1f, 0.1f, 0.0f); // The top left corner  
-	glVertex3f(this->health, 0.1f, 0.0f); // The top right corner  
-	glVertex3f(this->health, -0.1f, 0.0f); // The bottom right corner  
-	glPopMatrix();
+	glColor3f(1.0f, 0.0f, 0.0f); //Red color
+	glVertex3f(this->health /2, 0.1f, 0.0f); // The top right corner  
+	glColor3f(1.0f, 0.0f, 0.0f); //Red color
+	glVertex3f(this->health /2, -0.1f, 0.0f); // The bottom right corner  
 	glEnd();
+	glPopMatrix();
 }
 void Enemy::Update(char input)
 {
-	switch (input)
+	Player * player = nullptr;
+	for (GameObject * go : *(world->GetGameObjects()))
 	{
-	case 'a':
-		this->health -= 0.25f;
-		break;
-	case 's':
-		this->health -= 0.50f;
-		break;
-	case 'd':
-		this->health -= 0.75f;
-		break;
-	case 'f':
-		this->health -= 1;
-		break;
-	default:
-		break;
+		if (typeid(*go) == typeid(Player))
+		{
+			player = dynamic_cast<Player*>(go);
+
+		}
+	}
+	if (player && input)
+	{
+		switch (input)
+		{
+		case 'a':
+			red = 1;
+			green = 0;
+			blue = 0.5f;
+			Attack(player);
+			break;
+		case 's':
+			Attack(player);
+			break;
+		default:
+			break;
+		}
 	}
 	if (this->health <= 0)
 	{
-		health = 0;
+		this->health = 0;
 	}
-	///*GameObject   *p = World::gameObjects[0];
-	//Attack(p);*/
-	//glColor3f(0.4, 0.1, 0.1);
-	//glRasterPos2f(2, 0);
-	//int len, i;
-	//len = (int)strlen("health: ");
-	//for (int i = 0; i < len; i++) {
-	//	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, this->health);
-	//}
+	if (this->health >= 2)
+	{
+		this->health = 2;
+	}
 }
 
 void Enemy::Attack(Player *target)
 {
-	//int dmg = 12;
-	//target->health = target->health - dmg;
-	////char string = target->health;
-	//glColor3f(0.4, 0.1, 0.1);
-	//glRasterPos2f(0, 0);
-	////int len, i;
-	////len = (int)strlen(string);
-	//for (int i = 0; i < 2; i++) {
-	//	glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, target->health);
-	//}
+	target->health = target->health - 0.20;
 }
 
 
 Enemy::~Enemy()
 {
+	delete world;
+	world = nullptr;
 }
