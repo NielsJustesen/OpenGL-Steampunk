@@ -1,6 +1,13 @@
 #include "Enemy.h"
 #include <GL/glut.h>
 #include <string>
+
+
+
+
+
+
+Enemy::Enemy(float health, World gW) : GameObject()
 #include "World.h"
 #include <primitiveshape.h>
 

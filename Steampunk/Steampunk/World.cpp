@@ -11,7 +11,7 @@ void World::Update()
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
-	for (GameObject * go : gameObjects)
+	for (GameObject * go : *gameObjects)
 	{
 		go->Update();
 	}
@@ -20,10 +20,10 @@ void World::Update()
 
 }
 
-//std::vector<GameObject*> & World::GetGameObjects()
-//{
-//	return gameObjects;
-//}
+std::vector<GameObject*> * World::GetGameObjects()
+{
+	return gameObjects;
+}
 
 
 void World::Render()
@@ -31,7 +31,7 @@ void World::Render()
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
 	//glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
 
-	for (GameObject * go : gameObjects)
+	for (GameObject * go : *gameObjects)
 	{
 		go->Render();
 	}
@@ -43,7 +43,7 @@ void World::Render()
 //returns false if there is an enemy in the game
 bool World::FindEnemy()
 {
-	for (GameObject* go : gameObjects)
+	for (GameObject* go : *gameObjects)
 	{
 		if (typeid(*go) == typeid(Enemy))
 		{
@@ -58,9 +58,9 @@ bool World::FindEnemy()
 
 void World::AddEnemy()
 {
-	Enemy* e = new Enemy(100);
+	Enemy* e = new Enemy(100, *this);
 	it = toAdd.begin();
-	for (GameObject * go : gameObjects)
+	for (GameObject * go : *gameObjects)
 	{
 		if (typeid(*go) != typeid(*e))
 		{
@@ -74,7 +74,7 @@ void World::AddEnemy()
 	}
 	for (GameObject * go : toAdd)
 	{
-		gameObjects.push_back(go);
+		gameObjects->push_back(go);
 	}
 	toAdd.clear();
 }
@@ -82,7 +82,7 @@ void World::AddEnemy()
 void World::ClearEnemies()
 {
 	it = toRemove.begin();
-	for (GameObject * go : gameObjects)
+	for (GameObject * go : *gameObjects)
 	{
 		if (go->health <= 0)
 		{
@@ -99,11 +99,12 @@ void World::InputHandler(char input)
 World::World()
 {
 	bg = new BackGround(0, 0, 0);
-	p = new Player(2);
-	e = new Enemy(2);
-	it = gameObjects.begin();
-	it = gameObjects.insert(it, p);
-	gameObjects.push_back(e);
+	p = new Player(2.0f, *this);
+	e = new Enemy(2.0f, *this);
+	gameObjects = new std::vector<GameObject*>();
+	it = gameObjects->begin();
+	it = gameObjects->insert(it, p);
+	gameObjects->push_back(e);
 	oldTimeSinceStart = 0;
 	
 	glEnable(GL_TEXTURE_2D); //Enable texture mapping

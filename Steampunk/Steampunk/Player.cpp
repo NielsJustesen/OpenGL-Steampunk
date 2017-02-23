@@ -11,8 +11,10 @@
 	float green1 = 0.0f;
 	float blue1 = 1.0f;
 Player::Player(float health) : GameObject()
+Player::Player(float health, World world) : GameObject()
 {	
 	this->health = health;
+	this->world = world;
 }
 
 void Player::Spell1(Enemy * target)
@@ -61,24 +63,25 @@ void Player::HealthBar()
 
 void Player::Update(char input)
 {
-	/*Enemy *e;
-	GameObject * enemy = dynamic_cast<GameObject*>(e);
-	std::vector<GameObject*>::iterator it;
-	for (it = World::GetGameObjects.begin(); it < World::GetGameObjects.end(); it++)
+	
+	Enemy * enemy = nullptr;
+	/*std::vector<GameObject*>::iterator it;
+	for (it = World::GetGameObjects.begin(); it != World::GetGameObjects.end(); it++)
 	{
 		
-	}
-	for (GameObject * go : World::GetGameObjects)
+	}*/
+	for (GameObject * go : *(world.GetGameObjects()))
 	{
 		if (typeid(*go) == typeid(Enemy))
 		{
-			enemy = go;
+			enemy = dynamic_cast<Enemy*>(go);
+
 		}
 	}
-	if (input == 'a')
+	if (enemy && input == 'a')
 	{
-		Spell1(e);
-	}*/
+		Spell1(enemy);
+	}
 }
 
 
