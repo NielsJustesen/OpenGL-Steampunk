@@ -10,8 +10,8 @@ private:
 public:
 	std::vector<GameObject*>::iterator it;
     std::vector<GameObject*> * gameObjects;
-	std::vector<GameObject*> toAdd;
-	std::vector<GameObject*> toRemove;
+	std::vector<GameObject*> * toAdd;
+	std::vector<GameObject*> * toRemove;
 
 	World();
 	std::vector<GameObject*> * GetGameObjects();
@@ -20,7 +20,7 @@ public:
 	void Update();
 	void Render();
 	void AddEnemy();
-	void ClearEnemies();
+	void RemoveObjects();
 	~World();
 };
 #endif

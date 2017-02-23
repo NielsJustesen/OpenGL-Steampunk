@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\4. semester\c++ projekt\Steampunk\opengllib;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\4. semester\c++ projekt\Steampunk\opengllib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\niels_000\Desktop\Steampunk project\Steampunk\opengllib;D:\4. semester\c++ projekt\Steampunk\opengllib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\niels_000\Desktop\Steampunk project\Steampunk\opengllib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

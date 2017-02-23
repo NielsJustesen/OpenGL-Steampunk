@@ -34,7 +34,7 @@ void Reshape(int width, int height)
 //Keyboard input method handle keyboard input from glut. Could potentially parse it to the GW for further handling
 void Keyboard(unsigned char key, int x, int y)
 {
-	if (key == 'a' || key == 's' || key == 'd' || key == 'f')
+	if (key == 'a' || key == 's' || key == 'd')
 	{
 		world->InputHandler(key);
 	}
@@ -57,7 +57,7 @@ void GameLoop()
 void main(int argc, char** argv)
 {
 	glutInit(&argc, argv);//Init GLUT
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH); //Initialize glut display mode with rgb and alpha colors and Depth
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE); //Initialize glut display mode with rgb and alpha colors and Depth
 	glutInitWindowSize(1200, 900); //Set window size
 	glutInitWindowPosition(0, 0); //Set window position
 
