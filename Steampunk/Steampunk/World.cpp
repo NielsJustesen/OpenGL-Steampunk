@@ -11,7 +11,7 @@ void World::Update()
 	int timeSinceStart = glutGet(GLUT_ELAPSED_TIME);
 	float deltaTime = timeSinceStart - oldTimeSinceStart;
 	oldTimeSinceStart = timeSinceStart;
-	for (GameObject * go : *gameObjects)
+	for (GameObject * go : gameObjects)
 	{
 		go->Update();
 	}
@@ -31,7 +31,7 @@ void World::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffer
 	glLoadIdentity(); //loads the identity matrix on the matrix stack - essentially resetting any other matrixes
 
-	for (GameObject * go : *gameObjects)
+	for (GameObject * go : gameObjects)
 	{
 		go->Render();
 	}
@@ -60,7 +60,7 @@ void World::AddEnemy()
 {
 	Enemy* e = new Enemy(100);
 	it = toAdd.begin();
-	for (GameObject * go : *gameObjects)
+	for (GameObject * go : gameObjects)
 	{
 		if (typeid(*go) != typeid(*e))
 		{
@@ -82,7 +82,7 @@ void World::AddEnemy()
 void World::ClearEnemies()
 {
 	it = toRemove.begin();
-	for (GameObject * go : *gameObjects)
+	for (GameObject * go : gameObjects)
 	{
 		if (go->health <= 0)
 		{
@@ -101,8 +101,6 @@ World::World()
 	bg = new BackGround(0, 0, 0);
 	p = new Player(2);
 	e = new Enemy(2);
-	gameObjects = new std::vector<GameObject*>();
-	it = new std::vector<GameObject*>::iterator();
 	it = gameObjects.begin();
 	it = gameObjects.insert(it, p);
 	gameObjects.push_back(e);
